@@ -9,14 +9,20 @@ import {
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
+import LinkArea from './LinkArea';
+
 function LinkForm() {
   const [link, setLink] = useState('');
-
+  const [shortLink, setShortLink] = useState("");
   const submitHandler = async () => {
-    const shortLink = await axios.post('http://localhost:3001/', {
-      longLink: link,
-    });
-    console.log(shortLink.data);
+    setShortLink(
+      
+      await axios.post('http://localhost:3001/', {
+          longLink: link,
+        })
+    
+    );
+    
   };
   const handleChange = (e) => {
     setLink(e.target.value);
@@ -28,7 +34,10 @@ function LinkForm() {
       <FormHelperText>
         Link must be valid (starting with http or https)
       </FormHelperText>
-      <Button onClick={submitHandler}>Submit</Button>
+      <Button mb="20px" onClick={submitHandler}>
+        Submit
+      </Button>
+      <LinkArea shortLink={shortLink}/>
     </FormControl>
   );
 }
