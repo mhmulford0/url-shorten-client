@@ -17,12 +17,9 @@ function LinkForm() {
   const [shortLink, setShortLink] = useState("");
   const submitHandler = async () => {
     setShortLink(
-      
       await axios.post('http://localhost:3001/', {
           longLink: link,
-        })
-    
-    );
+    }));
     
   };
   const handleChange = (e) => {

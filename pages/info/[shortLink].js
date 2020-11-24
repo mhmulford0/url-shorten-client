@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import { Container, Heading } from '@chakra-ui/react';
@@ -9,8 +7,16 @@ function shortLink({ linkData }) {
     <>
       <Navbar />
       <Container textAlign="center">
-        <Heading>Link Stats</Heading>
-        {!linkData.error && linkData.map((i) => <p key={i.id}>{i.location}</p>)}
+        <Heading my="10px">
+          Short Link Clicks: {linkData ? linkData.length : ''}
+        </Heading>
+        <Heading as="h4" size="md">
+          Click Locations
+        </Heading>
+        {!linkData.error &&
+          linkData.map((ld) => {
+            return <p key={ld.id}>{ld.location}</p>;
+          })}
       </Container>
     </>
   );
@@ -26,7 +32,6 @@ export async function getServerSideProps(context) {
     linkData = await (
       await axios.get(`http://localhost:3001/${shortLink}/info`)
     ).data;
-    console.log(linkData);
   } catch (error) {
     linkData = { error: 'There was an error with your request' };
   }
