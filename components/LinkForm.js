@@ -37,7 +37,7 @@ function LinkForm() {
       <Button mb="20px" onClick={submitHandler}>
         Submit
       </Button>
-      <LinkArea shortLink={shortLink}/>
+      <LinkArea shortLink={shortLink.data} />
     </FormControl>
   );
 }

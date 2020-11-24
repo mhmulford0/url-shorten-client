@@ -1,20 +1,26 @@
 import { Heading, Textarea } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 
 function LinkArea({ shortLink }) {
-  console.log(shortLink);
-  return shortLink ? (
-    <Textarea
-      placeholder="Shortend link will display here"
-      value={`http://localhost:3001/${shortLink.data.message}`}
-      readOnly
-    />
-  ) : (
-    <Textarea
-      placeholder="Shortend link will display here"
-      value={''}
-      readOnly
-    />
-  );
+
+  if(shortLink){
+    return (
+      <Textarea
+        placeholder="Shortend link will display here"
+        value={`http://localhost:3001/${shortLink.message}` || ''}
+        readOnly
+      />
+    );
+  } else {
+      return (
+        <Textarea
+          placeholder="Shortend link will display here"
+          readOnly
+        />
+      );
+  }
 }
+
+
 
 export default LinkArea;
