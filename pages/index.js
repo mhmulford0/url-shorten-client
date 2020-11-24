@@ -11,7 +11,9 @@ export default function Home() {
     <>
       <NavBar />
       <Container>
-        <Heading my="10px">Link Shortner</Heading>
+        <Heading my="10px" textAlign="center">
+          Link Shortner
+        </Heading>
         <LinkForm />
       </Container>
     </>

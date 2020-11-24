@@ -1,17 +1,18 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Navbar from '../../components/Navbar';
+import { Container, Heading } from '@chakra-ui/react';
 
 function shortLink({ linkData }) {
-  // const router = useRouter();
-  // const { shortLink } = router.query;
-  const [linkInfo, setLinkInfo] = useState([]);
-  const [linkError, setLinkError] = useState('');
-
   return (
-    <div>
-      {!linkData.error && linkData.map((i) => <p key={i.id}>{i.location}</p>)}
-    </div>
+    <>
+      <Navbar />
+      <Container textAlign="center">
+        <Heading>Link Stats</Heading>
+        {!linkData.error && linkData.map((i) => <p key={i.id}>{i.location}</p>)}
+      </Container>
+    </>
   );
 }
 

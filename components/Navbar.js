@@ -4,11 +4,11 @@ import { Box } from '@chakra-ui/react';
 
 function Navbar() {
   return (
-    <Box bg="tomato" w="100%" p={4} color="white">
+    <Box bg="tomato" w="100%" p={4} color="white" mb="20px">
       <NextLink href="/">
         <Link mx="10px">Home</Link>
       </NextLink>
-      <NextLink href="/info">
+      <NextLink href="/info/:shortLink">
         <Link>Link Info</Link>
       </NextLink>
     </Box>
