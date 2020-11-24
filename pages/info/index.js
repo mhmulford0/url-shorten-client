@@ -1,11 +1,21 @@
 import React from 'react';
+import Navbar from '../../components/Navbar';
 
 function index() {
   return (
-    <div>
-      <p>Info Page</p>
-    </div>
+    <>
+      <Navbar />
+      <div>
+        <p>Info Page</p>
+      </div>
+    </>
   );
 }
 
 export default index;
+
+export async function getStaticProps(context) {
+  return {
+    props: {},
+  };
+}
