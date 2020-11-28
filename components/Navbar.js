@@ -8,7 +8,7 @@ function Navbar() {
       <NextLink href="/">
         <Link mx="10px">Home</Link>
       </NextLink>
-      <NextLink href="/info/:shortLink">
+      <NextLink href="/info/">
         <Link>Link Info</Link>
       </NextLink>
     </Box>
