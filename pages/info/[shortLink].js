@@ -4,20 +4,29 @@ import { Container, Heading } from '@chakra-ui/react';
 
 function shortLink({ linkData }) {
   return (
+    
     <>
       <Navbar />
-      <Container textAlign="center">
-        <Heading my="10px">
-          Short Link Clicks: {linkData ? linkData.length : ''}
-        </Heading>
-        <Heading as="h4" size="md">
-          Click Locations
-        </Heading>
-        {!linkData.error &&
-          linkData.map((ld) => {
-            return <p key={ld.id}>{ld.location}</p>;
-          })}
-      </Container>
+      
+        <Container textAlign="center">
+        {!linkData.error ?
+          <>
+          <Heading my="10px">
+            Short Link Clicks: {linkData ? linkData.length : ''}
+          </Heading>
+          <Heading as="h4" size="md">
+            Click Locations
+          </Heading>
+          { 
+            linkData.map((ld) => {
+              return <p key={ld.id}>{ld.location}</p>;
+            })
+          }
+          </>
+          : <Heading my="10px">Link Not Found</Heading>
+        }
+        </Container>
+
     </>
   );
 }
