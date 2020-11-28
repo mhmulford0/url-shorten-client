@@ -1,32 +1,46 @@
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
-import { Container, Heading } from '@chakra-ui/react';
+import { Container, Heading, SimpleGrid, Box } from '@chakra-ui/react';
 
 function shortLink({ linkData }) {
+  console.log(linkData);
   return (
-    
     <>
       <Navbar />
-      
-        <Container textAlign="center">
-        {!linkData.error ?
-          <>
-          <Heading my="10px">
-            Short Link Clicks: {linkData ? linkData.length : ''}
-          </Heading>
-          <Heading as="h4" size="md">
-            Click Locations
-          </Heading>
-          { 
-            linkData.map((ld) => {
-              return <p key={ld.id}>{ld.location}</p>;
-            })
-          }
-          </>
-          : <Heading my="10px">Link Not Found</Heading>
-        }
-        </Container>
 
+      <Container textAlign="center">
+        {!linkData.error ? (
+          <>
+            <Heading my="10px">
+              Total Link Clicks: {linkData ? linkData.clickInfo.length : ''}
+            </Heading>
+            <Heading as="h4" size="md" my="25px">
+              Original Link Info
+            </Heading>
+            <Box w="100%">
+              Original Link: {linkData.linkInfo.longLink}
+              <br />
+              Short Link Code: {linkData.linkInfo.shortLink}
+            </Box>
+            <Heading as="h4" size="md" my="25px">
+              Click Locations
+            </Heading>
+            <SimpleGrid columns={1} spacingX="40px" spacingY="10px">
+              {linkData.clickInfo.map((ld) => {
+                return (
+                  <Box textAlign="center" height="40px" paddingY="5px">
+                    <p key={ld.id}>
+                      {ld.location} / {ld.date}
+                    </p>
+                  </Box>
+                );
+              })}
+            </SimpleGrid>
+          </>
+        ) : (
+          <Heading my="10px">Link Not Found</Heading>
+        )}
+      </Container>
     </>
   );
 }
