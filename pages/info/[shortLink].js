@@ -3,7 +3,6 @@ import Navbar from '../../components/Navbar';
 import { Container, Heading, SimpleGrid, Box } from '@chakra-ui/react';
 
 function shortLink({ linkData }) {
-  console.log(linkData);
   return (
     <>
       <Navbar />
@@ -25,17 +24,21 @@ function shortLink({ linkData }) {
             <Heading as="h4" size="md" my="25px">
               Click Locations
             </Heading>
-            <SimpleGrid columns={1} spacingX="40px" spacingY="10px">
-              {linkData.clickInfo.map((ld) => {
-                return (
-                  <Box textAlign="center" height="40px" paddingY="5px">
-                    <p key={ld.id}>
-                      {ld.location} / {ld.date}
-                    </p>
-                  </Box>
-                );
-              })}
-            </SimpleGrid>
+            {linkData.clickInfo.length > 0 ? (
+              <SimpleGrid columns={1} spacingX="40px" spacingY="10px">
+                {linkData.clickInfo.map((ld) => {
+                  return (
+                    <Box textAlign="center" height="40px" paddingY="5px">
+                      <p key={ld.id}>
+                        {ld.location} / {ld.date}
+                      </p>
+                    </Box>
+                  );
+                })}
+              </SimpleGrid>
+            ) : (
+              'No clicks yet'
+            )}
           </>
         ) : (
           <Heading my="10px">Link Not Found</Heading>
