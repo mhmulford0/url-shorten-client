@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react';
 
 function Navbar() {
   return (
-    <Box bg='tomato' w='100%' p={4} color='white' mb='20px'>
+    <Box bg='#6E62FF' w='100%' p={4} color='white' mb='20px'>
       <NextLink href='/'>
         <Link mx='10px'>Home</Link>
       </NextLink>

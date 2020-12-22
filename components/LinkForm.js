@@ -11,6 +11,14 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import LinkArea from './LinkArea';
+import styled from '@emotion/styled';
+
+const StyledButton = styled(Button)`
+  background-color: #6e62ff;
+  &:hover {
+    background-color: #a299ff;
+  }
+`;
 
 function LinkForm() {
   const [link, setLink] = useState('');
@@ -27,14 +35,14 @@ function LinkForm() {
   };
   return (
     <form>
-      <FormControl id='shorten-link'>
+      <FormControl id='shorten-link' mb='30px'>
         <FormLabel>Link To Shorten</FormLabel>
-        <Input type='text' value={link} onChange={handleChange} />
-        <FormHelperText>Link must be valid (starting with http or https)</FormHelperText>
-        <Button mb='20px' onClick={submitHandler}>
+        <Input type='text' value={link} onChange={handleChange} required />
+        <FormHelperText mb='10px'>Link must be valid (starting with http or https)</FormHelperText>
+        <StyledButton mb='20px' onClick={submitHandler} size='lg'>
           Submit
-        </Button>
-        <Heading as='h3' size='lg' textAlign='center'>
+        </StyledButton>
+        <Heading as='h3' size='lg' textAlign='left' textStyle='heading' mt='15px'>
           Result
         </Heading>
         <LinkArea shortLink={shortLink.data} />

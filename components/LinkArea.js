@@ -13,6 +13,7 @@ function LinkArea({ shortLink }) {
           placeholder='Shortend link will display here'
           value={`https://link-shrtnr.herokuapp.com/${shortLink.message}`}
           readOnly
+          mb='15px'
         />
         <Button onClick={onCopy}>{hasCopied ? 'Copied' : 'Copy'}</Button>
       </>
