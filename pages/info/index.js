@@ -9,10 +9,10 @@ import {
   FormErrorMessage,
   FormHelperText,
   Input,
-  Button,
   Heading,
 } from '@chakra-ui/react';
 import Navbar from '../../components/Navbar';
+import StyledButton from '../../styles/StyledButton';
 
 export default function index() {
   const [linkInfo, setLinkInfo] = useState('');
@@ -30,17 +30,17 @@ export default function index() {
     <>
       <Navbar />
       <Container>
-        <Heading my='10px' textAlign='center'>
-          Link Info
+        <Heading my='10px' textAlign='center' textStyle='heading'>
+          Get Link Info
         </Heading>
         <form>
           <FormControl id='link-info'>
             <FormLabel>Short Link</FormLabel>
-            <Input type='text' value={linkInfo} onChange={handleChange} />
-            <FormHelperText>Must be the short link code provided</FormHelperText>
-            <Button mb='20px' onClick={submitHandler}>
+            <Input type='text' value={linkInfo} onChange={handleChange} mb='10px' />
+            <FormHelperText mb='10px'>Must be the short link code provided</FormHelperText>
+            <StyledButton mb='20px' onClick={submitHandler} size='lg'>
               Get Info
-            </Button>
+            </StyledButton>
           </FormControl>
         </form>
       </Container>
