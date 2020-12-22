@@ -26,7 +26,6 @@ export default function index() {
     e.preventDefault();
     router.push(`/info/${linkInfo}`);
   };
-
   return (
     <>
       <Navbar />
@@ -44,14 +43,7 @@ export default function index() {
             </Button>
           </FormControl>
         </form>
-        
       </Container>
     </>
   );
-}
-
-export async function getStaticProps(context) {
-  return {
-    props: {},
-  };
 }

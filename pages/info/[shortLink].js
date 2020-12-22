@@ -55,8 +55,7 @@ export async function getServerSideProps(context) {
   let linkData = {};
 
   try {
-    linkData = await axios.get(`http://localhost:3001/${shortLink}/info`);
-    
+    linkData = await axios.get(`https://link-shrtnr.herokuapp.com/${shortLink}/info`);
   } catch (error) {
     linkData = { error: 'There was an error with your request' };
   }

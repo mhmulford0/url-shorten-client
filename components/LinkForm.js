@@ -17,7 +17,7 @@ function LinkForm() {
   const [shortLink, setShortLink] = useState('');
   const submitHandler = async () => {
     setShortLink(
-      await axios.post('http://localhost:3001/', {
+      await axios.post('https://link-shrtnr.herokuapp.com/', {
         longLink: link,
       })
     );
