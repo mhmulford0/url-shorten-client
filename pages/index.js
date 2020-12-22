@@ -10,19 +10,12 @@ export default function Home() {
     <>
       <Navbar />
       <Container>
-        <Heading my='10px' textAlign='center' textStyle='heading'>
+        <Image src='/main.png' alt='header image' width={1093} height={978} />
+        <Heading my='10px' textAlign='left' textStyle='heading'>
           Link Shortner
         </Heading>
-        <Image src='/main.png' alt='header image' width={1093} height={978} />
-
         <LinkForm />
       </Container>
     </>
   );
-}
-
-export async function getStaticProps(context) {
-  return {
-    props: {},
-  };
 }
