@@ -1,26 +1,22 @@
 import axios from 'axios';
 import Navbar from '../../components/Navbar';
-import { Container, Heading, SimpleGrid, Box } from '@chakra-ui/react';
-
+import { Heading, SimpleGrid, Box, Container } from '@chakra-ui/react';
+import { Link } from '@chakra-ui/react';
 function shortLink({ linkData }) {
   return (
     <>
       <Navbar />
 
-      <Container textAlign='center'>
+      <Container centerContent>
         {!linkData.error ? (
           <>
-            <Heading my='10px'>
-              Total Link Clicks: {linkData ? linkData.clickInfo.length : ''}
-            </Heading>
+            <Heading my='10px'>Total Clicks: {linkData && linkData.clickInfo.length}</Heading>
             <Heading as='h4' size='md' my='25px'>
               Original Link Info
             </Heading>
-            <Box w='100%'>
-              Original Link: {linkData.linkInfo.longLink}
-              <br />
-              Short Link Code: {linkData.linkInfo.shortLink}
-            </Box>
+            <Link href={linkData.linkInfo.longLink}>Original Link</Link>
+            <br />
+            Short Link Code: {linkData.linkInfo.shortLink}
             <Heading as='h4' size='md' my='25px'>
               Click Locations
             </Heading>
