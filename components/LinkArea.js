@@ -1,6 +1,5 @@
-import { Heading, Input, useClipboard, Button } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-
+import { Input, useClipboard, Button } from '@chakra-ui/react';
+import StyledButton from '../styles/StyledButton';
 function LinkArea({ shortLink }) {
   if (shortLink) {
     const { hasCopied, onCopy } = useClipboard(
@@ -15,7 +14,9 @@ function LinkArea({ shortLink }) {
           readOnly
           mb='15px'
         />
-        <Button onClick={onCopy}>{hasCopied ? 'Copied' : 'Copy'}</Button>
+        <StyledButton size='lg' onClick={onCopy}>
+          {hasCopied ? 'Copied' : 'Copy'}
+        </StyledButton>
       </>
     );
   } else {

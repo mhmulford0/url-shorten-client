@@ -4,22 +4,13 @@ import {
   FormErrorMessage,
   FormHelperText,
   Input,
-  Button,
   Heading,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 import LinkArea from './LinkArea';
-import styled from '@emotion/styled';
-
-const StyledButton = styled(Button)`
-  background-color: #6e62ff;
-  &:hover {
-    background-color: #a299ff;
-  }
-`;
-
+import StyledButton from '../styles/StyledButton';
 function LinkForm() {
   const [link, setLink] = useState('');
   const [shortLink, setShortLink] = useState('');
