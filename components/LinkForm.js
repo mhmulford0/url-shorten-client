@@ -9,25 +9,29 @@ function LinkForm() {
   const toast = useToast();
   const [link, setLink] = useState('');
   const [shortLink, setShortLink] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const submitHandler = () => {
     if (link.length > 0) {
-      setShortLink(
-        axios
-          .post('https://link-shrtnr.herokuapp.com/', {
-            longLink: link,
-          })
-          .then(res => setShortLink(res))
-          .catch(err =>
-            toast({
-              title: 'Error With Request',
-              description: 'Your request could not be completed',
-              status: 'error',
-              duration: 5000,
-              isClosable: true,
-            })
-          )
-      );
+      setLoading(true);
+      axios
+        .post('https://link-shrtnr.herokuapp.com/', {
+          longLink: link,
+        })
+        .then(res => {
+          setLoading(false);
+          setShortLink(res);
+        })
+        .catch(err => {
+          setLoading(false);
+          toast({
+            title: 'Error With Request',
+            description: 'Your request could not be completed',
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          });
+        });
     } else {
       toast({
         title: 'Error With Request',
@@ -47,7 +51,7 @@ function LinkForm() {
         <FormLabel>Link To Shorten</FormLabel>
         <Input type='text' value={link} onChange={handleChange} required />
         <FormHelperText mb='10px'>Link must be valid (starting with http or https)</FormHelperText>
-        <StyledButton mb='20px' onClick={submitHandler} size='lg'>
+        <StyledButton mb='20px' onClick={submitHandler} size='lg' isLoading={loading}>
           Submit
         </StyledButton>
         <Heading as='h3' size='lg' textAlign='left' textStyle='heading' mt='15px'>
