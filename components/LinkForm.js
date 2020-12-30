@@ -22,7 +22,7 @@ function LinkForm() {
           setLoading(false);
           setShortLink(res);
         })
-        .catch(err => {
+        .catch(() => {
           setLoading(false);
           toast({
             title: 'Error With Request',

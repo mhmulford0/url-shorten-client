@@ -6,17 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "debug": "cross-env NODE_OPTIONS='--inspect' next dev"
+    "debug": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "lint": "eslint **/*.js --ignore-pattern node_modules/"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.0.1",
     "@emotion/react": "^11.1.1",
     "@emotion/styled": "^11.0.0",
     "axios": "^0.21.0",
+    "easy-peasy": "^4.0.1",
     "framer-motion": "^2.9.4",
     "next": "10.0.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-google-login": "^5.2.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
