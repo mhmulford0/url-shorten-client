@@ -11,7 +11,7 @@ import {
   Input,
   Heading,
 } from '@chakra-ui/react';
-import Navbar from '../../components/Navbar';
+
 import StyledButton from '../../styles/StyledButton';
 
 export default function index() {
@@ -28,7 +28,9 @@ export default function index() {
   };
   return (
     <>
-      <Navbar />
+      <Head>
+        <title>Get Link Info</title>
+      </Head>
       <Container>
         <Heading my='10px' textAlign='center' textStyle='heading'>
           Get Link Info

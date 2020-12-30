@@ -1,12 +1,14 @@
+import Head from 'next/head';
 import axios from 'axios';
-import Navbar from '../../components/Navbar';
 import { Heading, SimpleGrid, Box, Container } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/react';
+
 function shortLink(linkData) {
   return (
     <>
-      <Navbar />
-
+      <Head>
+        <title>Link Metrics</title>
+      </Head>
       <Container centerContent>
         {!linkData.error ? (
           <>
