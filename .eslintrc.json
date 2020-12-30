@@ -18,5 +18,10 @@
   },
   "globals": {
     "React": "writable"
+  },
+  "settings": {
+    "react": {
+      "version": "17.0.1"
+    }
   }
 }
