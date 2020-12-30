@@ -18,7 +18,7 @@ function Login() {
     <div>
       <GoogleLogin
         clientId='53708787455-dm15ra1k37b240k3ohn363akesccg0hj.apps.googleusercontent.com'
-        buttonText='Login'
+        buttonText='Login With Google'
         onSuccess={handleLogin}
         onFailure={handleFailure}
         cookiePolicy={'single_host_origin'}
