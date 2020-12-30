@@ -1,4 +1,4 @@
-import { Input, useClipboard, Button } from '@chakra-ui/react';
+import { Input, useClipboard } from '@chakra-ui/react';
 import StyledButton from '../styles/StyledButton';
 function LinkArea({ shortLink }) {
   if (shortLink) {

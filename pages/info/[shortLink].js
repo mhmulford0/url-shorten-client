@@ -6,7 +6,7 @@ function shortLink(linkData) {
   return (
     <>
       <Navbar />
-      {console.log(linkData)}
+
       <Container centerContent>
         {!linkData.error ? (
           <>
