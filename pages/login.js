@@ -1,5 +1,5 @@
 import { Stack } from '@chakra-ui/react';
-import Login from '../components/login';
+import Login from '../components/Login';
 
 function login() {
   return (
