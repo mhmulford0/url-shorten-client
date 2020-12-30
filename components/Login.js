@@ -3,7 +3,7 @@ import GoogleLogin from 'react-google-login';
 
 import { useStoreActions } from 'easy-peasy';
 
-function login() {
+function Login() {
   const router = useRouter();
   const login = useStoreActions(actions => actions.login);
 
@@ -29,4 +29,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

@@ -1,10 +1,11 @@
 import { GoogleLogout } from 'react-google-login';
+import { useStoreActions } from 'easy-peasy';
 
-const handleLogout = e => {
-  console.log(e);
-};
-
-function logout() {
+function Logout() {
+  const logout = useStoreActions(actions => actions.logout);
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <div>
       <GoogleLogout
@@ -16,4 +17,4 @@ function logout() {
   );
 }
 
-export default logout;
+export default Logout;

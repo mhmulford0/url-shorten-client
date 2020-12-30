@@ -6,6 +6,9 @@ const store = createStore(
     login: action((state, payload) => {
       state.userInfo = payload;
     }),
+    logout: action(state => {
+      state.userInfo = {};
+    }),
   })
 );
 
