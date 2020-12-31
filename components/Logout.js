@@ -1,20 +1,15 @@
-import { GoogleLogout } from 'react-google-login';
-import { useStoreActions } from 'easy-peasy';
+import { useRouter } from 'next/router';
+import { Button } from '@chakra-ui/react';
+//import { useStoreActions } from 'easy-peasy';
 
-function Logout() {
-  const logout = useStoreActions(actions => actions.logout);
-  const handleLogout = () => {
-    logout();
+function Login() {
+  const router = useRouter();
+  //const login = useStoreActions(actions => actions.login);
+
+  const handleClick = () => {
+    router.push('https://lnkshrt.app/auth/logout');
   };
-  return (
-    <div>
-      <GoogleLogout
-        clientId='53708787455-dm15ra1k37b240k3ohn363akesccg0hj.apps.googleusercontent.com'
-        buttonText='Logout'
-        onLogoutSuccess={handleLogout}
-      />
-    </div>
-  );
+  return <Button onClick={handleClick}>Logout</Button>;
 }
 
-export default Logout;
+export default Login;

@@ -2,11 +2,13 @@ import NextLink from 'next/link';
 import { Link } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 import { useStoreState } from 'easy-peasy';
+import Login from './Login';
+import Logout from './Logout';
 
 function Navbar() {
   const user = useStoreState(state => state.userInfo);
   return (
-    <Box bg='#6E62FF' w='100%' p={4} color='white' mb='20px'>
+    <Box bg='#6E62FF' w='100%' p={4} color='black' mb='20px'>
       <NextLink href='/'>
         <Link mx='10px'>Home</Link>
       </NextLink>
@@ -15,14 +17,10 @@ function Navbar() {
       </NextLink>
       {user.id ? (
         <>
-          <NextLink href='/logout/'>
-            <Link mx='10px'>Logout</Link>
-          </NextLink>
+          <Logout />
         </>
       ) : (
-        <NextLink href='/login/'>
-          <Link mx='10px'>Login</Link>
-        </NextLink>
+        <Login />
       )}
     </Box>
   );
