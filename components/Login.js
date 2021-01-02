@@ -7,7 +7,7 @@ function Login() {
   //const login = useStoreActions(actions => actions.login);
 
   const handleClick = () => {
-    router.push('http://localhost:3001/auth');
+    router.push('http://lnkshrt.app/auth');
   };
   return <Button onClick={handleClick}>Login</Button>;
 }
