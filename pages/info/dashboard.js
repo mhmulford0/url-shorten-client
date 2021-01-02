@@ -3,7 +3,7 @@ import axios from 'axios';
 function dashboard() {
   useEffect(() => {
     axios
-      .get('localhost:3001/auth/user')
+      .get('http:linkshrt.app/auth/user')
       .then(res => console.log(res))
       .catch(err => console.log(err));
   }, []);
