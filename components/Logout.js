@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { Button } from '@chakra-ui/react';
 //import { useStoreActions } from 'easy-peasy';
 
-function Login() {
+function Logout() {
   const router = useRouter();
   //const login = useStoreActions(actions => actions.login);
 
@@ -12,4 +12,4 @@ function Login() {
   return <Button onClick={handleClick}>Logout</Button>;
 }
 
-export default Login;
+export default Logout;

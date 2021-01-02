@@ -10,7 +10,7 @@ function LinkArea({ shortLink }) {
         <Input
           type='text'
           placeholder='Shortend link will display here'
-          value={`https://link-shrtnr.herokuapp.com/${shortLink.message}`}
+          value={`https://lnkshrt.app/${shortLink.message}`}
           readOnly
           mb='15px'
         />
