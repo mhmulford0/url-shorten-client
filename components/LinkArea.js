@@ -2,9 +2,7 @@ import { Input, useClipboard } from '@chakra-ui/react';
 import StyledButton from '../styles/StyledButton';
 function LinkArea({ shortLink }) {
   if (shortLink) {
-    const { hasCopied, onCopy } = useClipboard(
-      `https://link-shrtnr.herokuapp.com/${shortLink.message}`
-    );
+    const { hasCopied, onCopy } = useClipboard(`https://lnkshrt.app/${shortLink.message}`);
     return (
       <>
         <Input
