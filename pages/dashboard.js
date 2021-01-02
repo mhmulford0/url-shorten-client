@@ -1,12 +1,7 @@
 import { useEffect } from 'react';
 import axios from 'axios';
 function dashboard() {
-  useEffect(() => {
-    axios
-      .get('https://linkshrt.app/auth/user')
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  }, []);
+  useEffect(() => {}, []);
   return <div>test dashboard page</div>;
 }
 
