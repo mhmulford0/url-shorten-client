@@ -1,6 +1,6 @@
 import { FormControl, FormLabel, FormHelperText, Input, Heading } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
-import axios from 'axios';
+import fetchData from '../hooks/getData';
 import { useState } from 'react';
 
 import LinkArea from './LinkArea';
@@ -14,8 +14,8 @@ function LinkForm() {
   const submitHandler = () => {
     if (link.length > 0) {
       setLoading(true);
-      axios
-        .post('https://link-shrtnr.herokuapp.com/', {
+      fetchData()
+        .post('/', {
           longLink: link,
         })
         .then(res => {

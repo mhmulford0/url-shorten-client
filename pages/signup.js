@@ -1,13 +1,5 @@
-import {
-  FormControl,
-  FormLabel,
-  Container,
-  Input,
-  Button,
-  Heading,
-  useToast,
-} from '@chakra-ui/react';
-
+import { FormControl, FormLabel, Container, Input, Button, Heading } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react';
 import * as yup from 'yup';
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -16,9 +8,9 @@ let schema = yup.object().shape({
 
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-
 import firebase from 'firebase/app';
 import 'firebase/auth';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCgO-w3WVqCwUiKCPfNbOuqa-fofw3W1_k',
   authDomain: 'lnkshrt-5cc68.firebaseapp.com',
@@ -27,13 +19,11 @@ const firebaseConfig = {
   messagingSenderId: '17155075282',
   appId: '1:17155075282:web:24d3e5b160694b4871910b',
 };
-if (!firebase.apps.length) {
+if (firebase.apps.length < 1) {
   firebase.initializeApp(firebaseConfig);
 }
 
-import fetchData from '../hooks/getData';
-
-function login() {
+function signup() {
   const router = useRouter();
   const toast = useToast();
   const [formValues, setFormValues] = useState({ email: '', password: '' });
@@ -54,24 +44,9 @@ function login() {
         if (valid) {
           firebase
             .auth()
-            .signInWithEmailAndPassword(formValues.email, formValues.password)
-            .then(user => {
-              return user.user.getIdToken().then(idToken => {
-                fetchData()
-                  .post('/auth/login', { idToken })
-                  .then(() => {
-                    router.push('/dashboard');
-                  })
-                  .catch(err =>
-                    toast({
-                      title: 'Form Error',
-                      description: err.message,
-                      status: 'error',
-                      duration: 5000,
-                      isClosable: true,
-                    })
-                  );
-              });
+            .createUserWithEmailAndPassword(formValues.email, formValues.password)
+            .then(() => {
+              router.push('/login');
             })
             .catch(err => {
               console.log(err);
@@ -97,10 +72,8 @@ function login() {
       });
   };
   return (
-    <Container mt='180px'>
-      <Heading mb='75px' textAlign='center'>
-        Login
-      </Heading>
+    <Container>
+      <Heading mb='15px'>Sign Up</Heading>
       <form>
         <FormControl id='Email' isRequired mb='15px'>
           <FormLabel>Email</FormLabel>
@@ -116,10 +89,10 @@ function login() {
             onChange={changeHandler}
           />
         </FormControl>
-        <Button onClick={submitHandler}>Login</Button>
+        <Button onClick={submitHandler}>Sign Up</Button>
       </form>
     </Container>
   );
 }
 
-export default login;
+export default signup;
