@@ -1,6 +1,13 @@
-import { FormControl, FormLabel, Container, Input, Button, Heading } from '@chakra-ui/react';
-import { useStoreActions } from 'easy-peasy';
-import { useToast } from '@chakra-ui/react';
+import {
+  FormControl,
+  FormLabel,
+  Container,
+  Input,
+  Button,
+  Heading,
+  useToast,
+} from '@chakra-ui/react';
+
 import * as yup from 'yup';
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -9,9 +16,9 @@ let schema = yup.object().shape({
 
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
-
 const firebaseConfig = {
   apiKey: 'AIzaSyCgO-w3WVqCwUiKCPfNbOuqa-fofw3W1_k',
   authDomain: 'lnkshrt-5cc68.firebaseapp.com',
@@ -20,15 +27,17 @@ const firebaseConfig = {
   messagingSenderId: '17155075282',
   appId: '1:17155075282:web:24d3e5b160694b4871910b',
 };
-if (firebase.apps.length < 1) {
+if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+
+import fetchData from '../hooks/getData';
 
 function login() {
   const router = useRouter();
   const toast = useToast();
   const [formValues, setFormValues] = useState({ email: '', password: '' });
-  const loginAction = useStoreActions(actions => actions.login);
+
   const changeHandler = e => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
@@ -45,27 +54,24 @@ function login() {
         if (valid) {
           firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
-            .then(() => {
-              return firebase
-                .auth()
-                .signInWithEmailAndPassword(formValues.email, formValues.password)
-                .then(user => {
-                  loginAction({
-                    id: firebase.auth().currentUser.uid,
-                    email: firebase.auth().currentUser.email,
-                  });
-                  router.push('/dashboard');
-                })
-                .catch(err => {
-                  toast({
-                    title: 'Form Error',
-                    description: err.message,
-                    status: 'error',
-                    duration: 5000,
-                    isClosable: true,
-                  });
-                });
+            .signInWithEmailAndPassword(formValues.email, formValues.password)
+            .then(user => {
+              return user.user.getIdToken().then(idToken => {
+                fetchData()
+                  .post('/auth/login', { idToken })
+                  .then(() => {
+                    router.push('/dashboard');
+                  })
+                  .catch(err =>
+                    toast({
+                      title: 'Form Error',
+                      description: err.message,
+                      status: 'error',
+                      duration: 5000,
+                      isClosable: true,
+                    })
+                  );
+              });
             })
             .catch(err => {
               console.log(err);
@@ -91,8 +97,10 @@ function login() {
       });
   };
   return (
-    <Container>
-      <Heading mb='15px'>Login</Heading>
+    <Container mt='180px'>
+      <Heading mb='75px' textAlign='center'>
+        Login
+      </Heading>
       <form>
         <FormControl id='Email' isRequired mb='15px'>
           <FormLabel>Email</FormLabel>

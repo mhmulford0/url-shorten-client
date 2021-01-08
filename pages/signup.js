@@ -10,7 +10,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import axios from 'axios';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCgO-w3WVqCwUiKCPfNbOuqa-fofw3W1_k',

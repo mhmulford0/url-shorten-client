@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import axios from 'axios';
+import fetchData from '../../hooks/getData';
 import { Heading, SimpleGrid, Box, Container } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/react';
 
@@ -51,7 +51,7 @@ export async function getServerSideProps(context) {
   let linkData = {};
 
   try {
-    const info = await axios.get(`https://link-shrtnr.herokuapp.com/${shortLink}/info`);
+    const info = await fetchData().get(`/${shortLink}/info`);
     linkData = info.data;
   } catch (error) {
     linkData = { error: 'There was an error with your request' };
