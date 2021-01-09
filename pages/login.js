@@ -34,6 +34,7 @@ if (!firebase.apps.length) {
 }
 
 import fetchData from '../hooks/getData';
+import Link from 'next/link';
 
 function login() {
   const router = useRouter();
@@ -119,7 +120,10 @@ function login() {
             onChange={changeHandler}
           />
         </FormControl>
-        <Button onClick={submitHandler}>Login</Button>
+        <Button d='block' onClick={submitHandler} mb='25px'>
+          Login
+        </Button>
+        Not A Member? <Link href='/signup'>Sign Up Now</Link>
       </form>
     </Container>
   );

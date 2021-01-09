@@ -7,23 +7,24 @@ import { useStoreState } from 'easy-peasy';
 function Navbar() {
   const loginState = useStoreState(state => state.loggedIn);
   return (
-    <Box
-      bg='#6E62FF'
-      w='100%'
-      p={4}
-      color='black'
-      mb='20px'
-      d='flex'
-      alignItems='center'
-      justifyContent='center'
-    >
+    <Box bg='#6E62FF' w='100%' p={4} mb='20px' d='flex' alignItems='center' justifyContent='center'>
       <NextLink href='/'>
         <Link mx='10px'>Home</Link>
       </NextLink>
-      <NextLink href='/info/'>
-        <Link mx='10px'>Link Info</Link>
-      </NextLink>
-      {loginState ? <Logout /> : <Login />}
+
+      {loginState ? (
+        <>
+          <NextLink href='/dashboard/'>
+            <Link mx='10px'>Dashboard</Link>
+          </NextLink>
+          <NextLink href='/dashboard/short'>
+            <Link mx='10px'>Generate Link</Link>
+          </NextLink>
+          <Logout />
+        </>
+      ) : (
+        <Login />
+      )}
     </Box>
   );
 }

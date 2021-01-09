@@ -3,10 +3,9 @@ import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Box, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
-import fetchData from '../hooks/getData';
+import fetchData from '../../hooks/getData';
 function dashboard() {
   const router = useRouter();
-  const [idToken, setIdToken] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -15,9 +14,8 @@ function dashboard() {
           .auth()
           .currentUser.getIdToken(true)
           .then(idToken => {
-            setIdToken(idToken);
             fetchData()
-              .get('/linkInfo')
+              .post('/linkInfo', { idToken: idToken })
               .then(() => setLoading(false))
               .catch(() => router.push('/login'));
           })
@@ -32,11 +30,13 @@ function dashboard() {
 
   return (
     <div>
-      {loading && (
+      {loading ? (
         <Box padding='6' boxShadow='lg' bg='white'>
           <SkeletonCircle size='10' />
           <SkeletonText mt='6' noOfLines={12} spacing='6' />
         </Box>
+      ) : (
+        <h1>Your Links</h1>
       )}
     </div>
   );
