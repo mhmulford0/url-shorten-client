@@ -17,6 +17,8 @@ let schema = yup.object().shape({
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
+import { useStoreActions } from 'easy-peasy';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 const firebaseConfig = {
@@ -37,7 +39,7 @@ function login() {
   const router = useRouter();
   const toast = useToast();
   const [formValues, setFormValues] = useState({ email: '', password: '' });
-
+  const loginState = useStoreActions(actions => actions.login);
   const changeHandler = e => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
@@ -60,6 +62,7 @@ function login() {
                 fetchData()
                   .post('/auth/login', { idToken })
                   .then(() => {
+                    loginState();
                     router.push('/dashboard');
                   })
                   .catch(err =>

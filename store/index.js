@@ -2,12 +2,12 @@ import { createStore, action, persist } from 'easy-peasy';
 
 const store = createStore(
   persist({
-    userInfo: {},
+    loggedIn: false,
     login: action((state, payload) => {
-      state.userInfo = payload;
+      state.loggedIn = true;
     }),
     logout: action(state => {
-      state.userInfo = {};
+      state.loggedIn = false;
     }),
   })
 );
