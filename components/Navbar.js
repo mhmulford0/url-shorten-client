@@ -3,29 +3,53 @@ import { Link, Box } from '@chakra-ui/react';
 import Logout from './Logout';
 import Login from './Login';
 import { useStoreState } from 'easy-peasy';
-
+import styled from '@emotion/styled';
 function Navbar() {
   const loginState = useStoreState(state => state.loggedIn);
+  const StyledNav = styled(Box)`
+    background-color: #6e62ff;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    color: white;
+    height: 60px;
+    a {
+      height: 100%;
+      padding: 20px;
+      border-right: 1px solid black;
+    }
+    a:hover {
+      background-color: #5747ff;
+      text-decoration: none;
+    }
+  `;
   return (
-    <Box bg='#6E62FF' w='100%' p={4} mb='20px' d='flex' alignItems='center' justifyContent='center'>
+    <StyledNav>
       <NextLink href='/'>
-        <Link mx='10px'>Home</Link>
+        <Link>Home</Link>
       </NextLink>
 
       {loginState ? (
         <>
           <NextLink href='/dashboard/'>
-            <Link mx='10px'>Dashboard</Link>
+            <Link>Dashboard</Link>
           </NextLink>
           <NextLink href='/dashboard/short'>
-            <Link mx='10px'>Generate Link</Link>
+            <Link>Shorten</Link>
           </NextLink>
-          <Logout />
+          <Box d='flex' w='100%' justifyContent='flex-end'>
+            <Logout />
+          </Box>
         </>
       ) : (
-        <Login />
+        <Box d='flex' w='100%' justifyContent='flex-end'>
+          <Login />
+        </Box>
       )}
-    </Box>
+    </StyledNav>
   );
 }
 

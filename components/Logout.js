@@ -16,7 +16,9 @@ function Logout() {
   };
   return (
     <div>
-      <Button onClick={handleLogout}>Logout</Button>
+      <Button color='#1A202C' onClick={handleLogout} m='10px'>
+        Logout
+      </Button>
     </div>
   );
 }

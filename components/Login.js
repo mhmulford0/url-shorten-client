@@ -8,7 +8,9 @@ function Logout() {
   };
   return (
     <div>
-      <Button onClick={handleLogin}>Login</Button>
+      <Button color='#1A202C' m='10px' onClick={handleLogin}>
+        Login
+      </Button>
     </div>
   );
 }
