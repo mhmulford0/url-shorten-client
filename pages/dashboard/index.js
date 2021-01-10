@@ -60,6 +60,7 @@ function dashboard() {
               <span style={{ fontWeight: 'bold' }}>ID</span>
               <span style={{ fontWeight: 'bold' }}>Original Link</span>
               <span style={{ fontWeight: 'bold' }}>Link Code</span>
+              <span style={{ fontWeight: 'bold' }}>Link Stats</span>
             </Box>
 
             {links.map(link => {
@@ -78,6 +79,9 @@ function dashboard() {
                     <Link href={link.longLink}>Original Link</Link>
                   </span>
                   <span>{link.shortLink}</span>
+                  <span>
+                    <Link href={`dashboard/info/?shortLink=${link.shortLink}`}>Stats</Link>
+                  </span>
                 </Box>
               );
             })}
