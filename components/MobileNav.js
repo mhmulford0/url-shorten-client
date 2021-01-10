@@ -13,7 +13,6 @@ function Navbar() {
     width: 100%;
     position: fixed;
     bottom: 0;
-    margin-top: 20px;
     align-items: center;
     display: flex;
     color: white;

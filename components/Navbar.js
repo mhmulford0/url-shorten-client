@@ -17,10 +17,10 @@ function Navbar() {
     justify-content: flex-start;
     align-content: center;
     color: white;
-    height: 60px;
+    height: 70px;
     a {
       height: 100%;
-      padding: 20px;
+      padding: 25px 20px;
       border-right: 1px solid black;
     }
     a:hover {
@@ -30,29 +30,32 @@ function Navbar() {
   `;
   return (
     <StyledNav bottom={[0, 0, 1]} position={['fixed', 'fixed', 'relative']} mb={[0, 0, 20]}>
-      <NextLink href='/'>
-        <Link>Home</Link>
-      </NextLink>
-
-      {loginState && isDesktop ? (
+      {isDesktop ? (
         <>
-          <NextLink href='/dashboard/'>
-            <Link>Dashboard</Link>
+          <NextLink href='/'>
+            <Link>Home</Link>
           </NextLink>
-          <NextLink href='/dashboard/short'>
-            <Link>Shorten</Link>
-          </NextLink>
-          <Box d='flex' w='100%' justifyContent='flex-end'>
-            <Logout />
-          </Box>
+          {loginState ? (
+            <>
+              <NextLink href='/dashboard/'>
+                <Link>Dashboard</Link>
+              </NextLink>
+              <NextLink href='/dashboard/short'>
+                <Link>Shorten</Link>
+              </NextLink>
+              <Box d='flex' w='100%' justifyContent='flex-end'>
+                <Logout />
+              </Box>
+            </>
+          ) : (
+            <Box d='flex' w='100%' justifyContent='flex-end'>
+              <Login />
+            </Box>
+          )}
         </>
       ) : (
-        <Box d='flex' w='100%' justifyContent='flex-end'>
-          <Login />
-        </Box>
+        <MobileNav />
       )}
-
-      {loginState && !isDesktop ? <MobileNav /> : ''}
     </StyledNav>
   );
 }
