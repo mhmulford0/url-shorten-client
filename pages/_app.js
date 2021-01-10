@@ -4,6 +4,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
 import { StoreProvider } from 'easy-peasy';
 
+import { useMediaQuery } from '@chakra-ui/react';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -21,6 +23,7 @@ if (firebase.apps.length < 1) {
 
 import store from '../store';
 import Navbar from '../components/Navbar';
+import MobileNav from '../components/MobileNav';
 
 const theme = extendTheme({
   textStyles: {
@@ -38,11 +41,22 @@ const theme = extendTheme({
 });
 
 function MyApp({ Component, pageProps }) {
+  const [isDesktop] = useMediaQuery('(min-width: 800px)');
+  console.log(isDesktop);
   return (
     <ChakraProvider theme={theme}>
       <StoreProvider store={store}>
-        <Navbar />
-        <Component {...pageProps} />
+        {isDesktop ? (
+          <>
+            <Navbar />
+            <Component {...pageProps} />
+          </>
+        ) : (
+          <>
+            <Component {...pageProps} />
+            <MobileNav />
+          </>
+        )}
       </StoreProvider>
     </ChakraProvider>
   );
