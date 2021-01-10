@@ -4,12 +4,14 @@ import Logout from './Logout';
 import Login from './Login';
 import { useStoreState } from 'easy-peasy';
 import styled from '@emotion/styled';
+import { useMediaQuery } from '@chakra-ui/react';
+import MobileNav from './MobileNav';
 function Navbar() {
   const loginState = useStoreState(state => state.loggedIn);
+  const [isDesktop] = useMediaQuery('(min-width: 768px)');
   const StyledNav = styled(Box)`
     background-color: #6e62ff;
     width: 100%;
-    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -27,12 +29,12 @@ function Navbar() {
     }
   `;
   return (
-    <StyledNav>
+    <StyledNav bottom={[0, 0, 1]} position={['fixed', 'fixed', 'relative']} mb={[0, 0, 20]}>
       <NextLink href='/'>
         <Link>Home</Link>
       </NextLink>
 
-      {loginState ? (
+      {loginState && isDesktop ? (
         <>
           <NextLink href='/dashboard/'>
             <Link>Dashboard</Link>
@@ -49,6 +51,8 @@ function Navbar() {
           <Login />
         </Box>
       )}
+
+      {loginState && !isDesktop ? <MobileNav /> : ''}
     </StyledNav>
   );
 }

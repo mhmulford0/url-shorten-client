@@ -7,29 +7,32 @@ import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import LinkForm from '../../components/LinkForm';
-import Image from 'next/image';
 import fetchData from '../../hooks/getData';
+import { useStoreState } from 'easy-peasy';
 
 export default function Home() {
   const router = useRouter();
+  const loginState = useStoreState(state => state.loggedIn);
   const [loading, setLoading] = useState(true);
+  const [idToken, setIdToken] = useState(null);
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
+      if (user && loginState) {
         firebase
           .auth()
           .currentUser.getIdToken(true)
           .then(idToken => {
+            setIdToken(idToken);
             fetchData()
-              .post('/linkInfo', { idToken: idToken })
+              .post('/auth', { idToken: idToken })
               .then(() => setLoading(false))
-              .catch(() => router.push('/login'));
+              .catch(() => router.replace('/login'));
           })
           .catch(error => {
             console.log(error.response);
           });
       } else {
-        router.push('/login');
+        router.replace('/login');
       }
     });
   }, []);
@@ -45,12 +48,11 @@ export default function Home() {
           <Head>
             <title>Lnk Shrt - Shorten Links</title>
           </Head>
-          <Container>
-            <Image src='/main.png' alt='header image' width={1093} height={978} />
-            <Heading my='10px' textAlign='left' textStyle='heading'>
-              Lnk Shrt
-            </Heading>
-            <LinkForm />
+          <Heading my='10px' textAlign='center' textStyle='heading'>
+            Shorten Your Link
+          </Heading>
+          <Container mt={[50, 50, 100]} padding='6' boxShadow='lg' bg='#F5F5F5'>
+            <LinkForm idToken={idToken} />
           </Container>
         </>
       )}

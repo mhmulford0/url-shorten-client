@@ -11,7 +11,7 @@ function Logout() {
       .get('/auth/logout')
       .then(() => {
         logout();
-        router.push('/login');
+        router.replace('/login');
       });
   };
   return (

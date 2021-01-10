@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import LinkArea from './LinkArea';
 import StyledButton from '../styles/StyledButton';
-function LinkForm() {
+function LinkForm({ idToken }) {
   const toast = useToast();
   const [link, setLink] = useState('');
   const [shortLink, setShortLink] = useState('');
@@ -17,6 +17,7 @@ function LinkForm() {
       fetchData()
         .post('/', {
           longLink: link,
+          idToken: idToken,
         })
         .then(res => {
           setLoading(false);

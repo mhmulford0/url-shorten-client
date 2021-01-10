@@ -78,7 +78,6 @@ function login() {
               });
             })
             .catch(err => {
-              console.log(err);
               toast({
                 title: 'Form Error',
                 description: err.message,
@@ -90,7 +89,6 @@ function login() {
         }
       })
       .catch(err => {
-        console.log(err.errors);
         toast({
           title: 'Form Error',
           description: err.errors,
@@ -101,7 +99,7 @@ function login() {
       });
   };
   return (
-    <Container mt='180px'>
+    <Container mt={[50, 50, 150]} padding='6' boxShadow='lg' bg='#F5F5F5'>
       <Heading mb='75px' textAlign='center'>
         Login
       </Heading>
@@ -120,7 +118,7 @@ function login() {
             onChange={changeHandler}
           />
         </FormControl>
-        <Button d='block' onClick={submitHandler} mb='25px'>
+        <Button d='block' onClick={submitHandler} mb='25px' color='#1A202C' bg='#FFFFFF'>
           Login
         </Button>
         Not A Member? <Link href='/signup'>Sign Up Now</Link>

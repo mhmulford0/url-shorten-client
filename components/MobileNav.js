@@ -14,10 +14,8 @@ function Navbar() {
     position: fixed;
     bottom: 0;
     margin-top: 20px;
+    align-items: center;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    align-content: space-between;
     color: white;
     height: 70px;
     a {
