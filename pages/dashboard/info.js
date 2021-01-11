@@ -36,20 +36,26 @@ function info() {
         <title>Link Metrics</title>
       </Head>
       {!loading ? (
-        <Container centerContent>
+        <Container padding='6' boxShadow='lg' bg='#F5F5F5' centerContent textAlign='right'>
           {linkData.linkInfo ? (
             <>
               <Heading my='10px' textStyle='heading'>
                 Total Clicks: {linkData && linkData.clickInfo.length}
               </Heading>
               <Heading as='h4' size='md' my='10px' textStyle='heading'>
-                Click Locations
+                Click Locations / Date
               </Heading>
               {linkData.clickInfo.length > 0 ? (
                 <SimpleGrid columns={1} spacingX='40px' spacingY='10px'>
                   {linkData.clickInfo.map(ld => {
                     return (
-                      <Box key={ld.id} textAlign='center' height='40px' paddingY='5px'>
+                      <Box
+                        key={ld.id}
+                        textAlign='center'
+                        height='40px'
+                        paddingY='5px'
+                        borderBottom='1px solid black'
+                      >
                         <p>
                           {ld.location} / {ld.date}
                         </p>
