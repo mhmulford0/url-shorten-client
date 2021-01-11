@@ -29,33 +29,29 @@ function Navbar() {
     }
   `;
   return (
-    <StyledNav bottom={[0, 0, 1]} position={['fixed', 'fixed', 'relative']} mb={[0, 0, 20]}>
-      {isDesktop ? (
-        <>
-          <NextLink href='/'>
-            <Link>Home</Link>
-          </NextLink>
-          {loginState ? (
-            <>
-              <NextLink href='/dashboard/'>
-                <Link>Dashboard</Link>
-              </NextLink>
-              <NextLink href='/dashboard/short'>
-                <Link>Shorten</Link>
-              </NextLink>
-              <Box d='flex' w='100%' justifyContent='flex-end'>
-                <Logout />
-              </Box>
-            </>
-          ) : (
+    <StyledNav mb='20px'>
+      <>
+        <NextLink href='/'>
+          <Link>Home</Link>
+        </NextLink>
+        {loginState ? (
+          <>
+            <NextLink href='/dashboard/'>
+              <Link>Dashboard</Link>
+            </NextLink>
+            <NextLink href='/dashboard/short'>
+              <Link>Shorten</Link>
+            </NextLink>
             <Box d='flex' w='100%' justifyContent='flex-end'>
-              <Login />
+              <Logout />
             </Box>
-          )}
-        </>
-      ) : (
-        <MobileNav />
-      )}
+          </>
+        ) : (
+          <Box d='flex' w='100%' justifyContent='flex-end'>
+            <Login />
+          </Box>
+        )}
+      </>
     </StyledNav>
   );
 }

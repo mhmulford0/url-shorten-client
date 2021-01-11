@@ -20,7 +20,7 @@ if (firebase.apps.length < 1) {
 }
 
 import store from '../store';
-import Navbar from '../components/Navbar';
+import NavbarContainer from '../components/NavbarContainer';
 
 const theme = extendTheme({
   textStyles: {
@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
       <StoreProvider store={store}>
-        <Navbar />
+        <NavbarContainer />
         <Component {...pageProps} />
       </StoreProvider>
     </ChakraProvider>
