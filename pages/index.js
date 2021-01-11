@@ -21,7 +21,7 @@ export default function Home() {
         <Heading as='h4' size='md' my='10px' textAlign='center' textStyle='heading' color='#3C4B67'>
           Get Data About Who's Clicking Your Link
         </Heading>
-        <Flex direction={['column', 'column', 'row']} mb={40} mt={[40, 40, 0]}>
+        <Flex direction={['column', 'column', 'row']} mb={40} mt={[20, 20, 0]}>
           <Box flex='1' mx={[0, 2]} my={[4, 4, 0]}>
             <Image src='/img2.jpg' height={480} width={640} />
             <Text textAlign='center'>Gain Insight, See Where Your Vistors Are From.</Text>
