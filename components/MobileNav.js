@@ -17,6 +17,7 @@ function Navbar() {
     display: flex;
     color: white;
     height: 70px;
+    z-index: 100;
     a {
       height: 100%;
       padding: 20px;

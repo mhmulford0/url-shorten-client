@@ -13,7 +13,6 @@ function info() {
 
   const loginState = useStoreState(state => state.loggedIn);
   const shortLink = router.query.shortLink;
-  console.log(router.query.shortLink);
 
   useEffect(() => {
     if (!loginState) {
@@ -26,6 +25,7 @@ function info() {
           setLoading(false);
         })
         .catch(err => {
+          setLinkData(true);
           console.log(err);
         });
     }
@@ -42,27 +42,29 @@ function info() {
               <Heading my='10px' textStyle='heading'>
                 Total Clicks: {linkData && linkData.clickInfo.length}
               </Heading>
-              <Heading as='h4' size='md' my='10px' textStyle='heading'>
-                Click Locations / Date
-              </Heading>
               {linkData.clickInfo.length > 0 ? (
-                <SimpleGrid columns={1} spacingX='40px' spacingY='10px'>
-                  {linkData.clickInfo.map(ld => {
-                    return (
-                      <Box
-                        key={ld.id}
-                        textAlign='center'
-                        height='40px'
-                        paddingY='5px'
-                        borderBottom='1px solid black'
-                      >
-                        <p>
-                          {ld.location} / {ld.date}
-                        </p>
-                      </Box>
-                    );
-                  })}
-                </SimpleGrid>
+                <>
+                  <Heading as='h4' size='md' my='10px' textStyle='heading'>
+                    Click Locations / Date
+                  </Heading>
+                  <SimpleGrid columns={1} spacingX='40px' spacingY='10px'>
+                    {linkData.clickInfo.map(ld => {
+                      return (
+                        <Box
+                          key={ld.id}
+                          textAlign='center'
+                          height='40px'
+                          paddingY='5px'
+                          borderBottom='1px solid black'
+                        >
+                          <p>
+                            {ld.location} / {ld.date}
+                          </p>
+                        </Box>
+                      );
+                    })}
+                  </SimpleGrid>
+                </>
               ) : (
                 'No clicks yet'
               )}
