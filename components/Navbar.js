@@ -4,11 +4,10 @@ import Logout from './Logout';
 import Login from './Login';
 import { useStoreState } from 'easy-peasy';
 import styled from '@emotion/styled';
-import { useMediaQuery } from '@chakra-ui/react';
-import MobileNav from './MobileNav';
+
 function Navbar() {
   const loginState = useStoreState(state => state.loggedIn);
-  const [isDesktop] = useMediaQuery('(min-width: 768px)');
+
   const StyledNav = styled(Box)`
     background-color: #6e62ff;
     width: 100%;
