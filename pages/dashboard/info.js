@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import fetchData from '../../hooks/getData';
-import { Heading, SimpleGrid, Box, Container } from '@chakra-ui/react';
+import { Heading, SimpleGrid, Box, Container, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useStoreState } from 'easy-peasy';
@@ -30,6 +30,10 @@ function info() {
         });
     }
   }, [shortLink]);
+
+  const deleteLink = () => {
+    fetchData().delete(`/${shortLink}`).then(router.replace('/dashboard'));
+  };
   return (
     <>
       <Head>
@@ -47,6 +51,9 @@ function info() {
                   <Heading as='h4' size='md' my='10px' textStyle='heading'>
                     Click Locations / Date
                   </Heading>
+                  <Button mb='15px' color='#1A202C' bg='#FFFFFF' onClick={deleteLink}>
+                    Delete Link
+                  </Button>
                   <SimpleGrid columns={1} spacingX='40px' spacingY='10px'>
                     {linkData.clickInfo.map(ld => {
                       return (

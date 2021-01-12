@@ -14,10 +14,10 @@ let schema = yup.object().shape({
   password: yup.string().required(),
 });
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { useStoreActions } from 'easy-peasy';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -42,10 +42,17 @@ function login() {
   const [formValues, setFormValues] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const loginState = useStoreActions(actions => actions.login);
+  const loggedIn = useStoreState(state => state.loggedIn);
   const changeHandler = e => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
+
+  useEffect(() => {
+    if (loggedIn) {
+      router.replace('/dashboard');
+    }
+  }, []);
 
   const submitHandler = e => {
     e.preventDefault();
