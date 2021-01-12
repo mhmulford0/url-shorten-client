@@ -1,14 +1,13 @@
 import Head from 'next/head';
 
-import { Container, SkeletonCircle, SkeletonText, Box } from '@chakra-ui/react';
-import { Heading } from '@chakra-ui/react';
+import { SkeletonCircle, SkeletonText, Box } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import LinkForm from '../../components/LinkForm';
 import fetchData from '../../hooks/getData';
 import { useStoreState } from 'easy-peasy';
+import ShortenContainer from '../../components/ShortenContainer';
 
 export default function Home() {
   const router = useRouter();
@@ -26,7 +25,7 @@ export default function Home() {
             fetchData()
               .post('/auth', { idToken: idToken })
               .then(() => setLoading(false))
-              .catch(() => router.replace('/login'));
+              .catch(() => router.push('/login'));
           })
           .catch(error => {
             console.log(error.response);
@@ -48,12 +47,7 @@ export default function Home() {
           <Head>
             <title>Lnk Shrt - Shorten Links</title>
           </Head>
-          <Heading my='10px' textAlign='center' textStyle='heading'>
-            Shorten Your Link
-          </Heading>
-          <Container mt={[50, 50, 100]} padding='6' boxShadow='lg' bg='#F5F5F5'>
-            <LinkForm idToken={idToken} />
-          </Container>
+          <ShortenContainer idToken={idToken} />
         </>
       )}
     </div>
