@@ -19,7 +19,7 @@ export default function Home() {
         </Heading>
         <Image src='/main.png' alt='header image' width={1093} height={978} />
         <Heading as='h4' size='md' my='10px' textAlign='center' textStyle='heading' color='#3C4B67'>
-          Get Data About Who's Clicking Your Link
+          Get Data About Who is Clicking Your Link
         </Heading>
         <Flex direction={['column', 'column', 'row']} mb={40} mt={[20, 20, 0]}>
           <Box flex='1' mx={[0, 2]} my={[4, 4, 0]}>
