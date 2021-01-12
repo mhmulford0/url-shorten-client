@@ -40,6 +40,7 @@ function login() {
   const router = useRouter();
   const toast = useToast();
   const [formValues, setFormValues] = useState({ email: '', password: '' });
+  const [loading, setLoading] = useState(false);
   const loginState = useStoreActions(actions => actions.login);
   const changeHandler = e => {
     const { name, value } = e.target;
@@ -48,6 +49,7 @@ function login() {
 
   const submitHandler = e => {
     e.preventDefault();
+    setLoading(true);
     schema
       .validate({
         email: formValues.email,
@@ -64,20 +66,23 @@ function login() {
                   .post('/auth/login', { idToken })
                   .then(() => {
                     loginState();
+                    setLoading(false);
                     router.push('/dashboard');
                   })
-                  .catch(err =>
+                  .catch(err => {
+                    setLoading(false);
                     toast({
                       title: 'Form Error',
                       description: err.message,
                       status: 'error',
                       duration: 5000,
                       isClosable: true,
-                    })
-                  );
+                    });
+                  });
               });
             })
             .catch(err => {
+              setLoading(false);
               toast({
                 title: 'Form Error',
                 description: err.message,
@@ -89,6 +94,7 @@ function login() {
         }
       })
       .catch(err => {
+        setLoading(false);
         toast({
           title: 'Form Error',
           description: err.errors,
@@ -118,10 +124,21 @@ function login() {
             onChange={changeHandler}
           />
         </FormControl>
-        <Button d='block' onClick={submitHandler} mb='25px' color='#1A202C' bg='#FFFFFF'>
+        <Button
+          as='button'
+          d='block'
+          onClick={submitHandler}
+          mb='25px'
+          color='#1A202C'
+          bg='#FFFFFF'
+          isLoading={loading}
+        >
           Login
         </Button>
-        Not A Member? <Link href='/signup'>Sign Up Now</Link>
+        Not A Member?{' '}
+        <Link href='/signup'>
+          <span className='form-links'>Sign Up Now</span>
+        </Link>
       </form>
     </Container>
   );

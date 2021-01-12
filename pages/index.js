@@ -38,7 +38,7 @@ export default function Home() {
       </Container>
       <Flex
         w='100%'
-        bg='#3A25F8'
+        bg='#5747FF'
         color='white'
         justifyContent='center'
         alignItems='center'

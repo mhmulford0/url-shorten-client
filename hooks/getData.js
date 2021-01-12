@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const fetchData = () => {
   return axios.create({
-    baseURL: 'https://lnkshrt.app',
+    baseURL: 'http://localhost:3001',
     withCredentials: true,
   });
 };

@@ -33,6 +33,9 @@ const theme = extendTheme({
       body: {
         fontFamily: 'Montserrat',
       },
+      a: {
+        color: 'blue',
+      },
     },
   },
 });
