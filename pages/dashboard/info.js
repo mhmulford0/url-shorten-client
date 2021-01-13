@@ -13,7 +13,7 @@ function info() {
 
   const loginState = useStoreState(state => state.loggedIn);
   const shortLink = router.query.shortLink;
-
+  const [error, setError] = useState(false);
   useEffect(() => {
     if (!loginState) {
       router.replace('/login');
@@ -24,16 +24,16 @@ function info() {
           setLinkData(res.data);
           setLoading(false);
         })
-        .catch(err => {
-          setLinkData(true);
-          console.log(err);
+        .catch(() => {
+          setError(true);
+          setLoading(false);
         });
     }
   }, [shortLink]);
 
   return (
     <>
-      {loading ? (
+      {loading && !error ? (
         <Box padding='6' boxShadow='lg' bg='white'>
           <SkeletonCircle size='10' />
           <SkeletonText mt='6' noOfLines={12} spacing='6' />

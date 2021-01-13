@@ -28,7 +28,7 @@ export default function Home() {
               .catch(() => router.push('/login'));
           })
           .catch(error => {
-            console.log(error.response);
+            setLoading(false);
           });
       } else {
         router.replace('/login');

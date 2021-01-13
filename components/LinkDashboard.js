@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
 import { Box, Container, Heading, useToast } from '@chakra-ui/react';
 import Link from 'next/link';
 
 function LinkDashboard({ links }) {
-  useEffect(() => {}, [links]);
-
   const toast = useToast();
 
   const copyLink = e => {
