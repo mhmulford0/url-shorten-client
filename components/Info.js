@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Heading, SimpleGrid, Box, Container, Button, useToast } from '@chakra-ui/react';
+import { Heading, SimpleGrid, Box, Container, Button } from '@chakra-ui/react';
 import fetchData from '../hooks/getData';
 import { useRouter } from 'next/router';
 
 function Info({ linkData, setRefresh }) {
   const router = useRouter();
-  const toast = useToast();
   const shortLink = router.query.shortLink;
   const [error, setError] = useState(false);
   const deleteLink = () => {
@@ -15,7 +14,9 @@ function Info({ linkData, setRefresh }) {
         router.replace('/dashboard');
         setRefresh(true);
       })
-      .catch(() => {});
+      .catch(() => {
+        setError(true);
+      });
   };
   return (
     <Container padding='6' boxShadow='lg' bg='#F5F5F5' centerContent textAlign='right'>
