@@ -30,7 +30,7 @@ function dashboard() {
           router.replace('/login');
         });
     }
-  }, []);
+  }, [router]);
 
   return (
     <div>
