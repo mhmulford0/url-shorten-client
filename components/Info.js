@@ -3,7 +3,7 @@ import { Heading, SimpleGrid, Box, Container, Button, useToast } from '@chakra-u
 import fetchData from '../hooks/getData';
 import { useRouter } from 'next/router';
 
-function Info({ linkData }) {
+function Info({ linkData, setRefresh }) {
   const router = useRouter();
   const toast = useToast();
   const shortLink = router.query.shortLink;
@@ -11,16 +11,11 @@ function Info({ linkData }) {
   const deleteLink = () => {
     fetchData()
       .delete(`/${shortLink}`)
-      .then(router.push('/dashboard'))
-      .catch(() => {
-        setError(true);
-        toast({
-          title: 'Error With Request',
-          status: 'error',
-          duration: 2500,
-          isClosable: true,
-        });
-      });
+      .then(() => {
+        router.replace('/dashboard');
+        setRefresh(true);
+      })
+      .catch(() => {});
   };
   return (
     <Container padding='6' boxShadow='lg' bg='#F5F5F5' centerContent textAlign='right'>
