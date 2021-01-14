@@ -7,10 +7,13 @@ function Info({ linkData, setRefresh }) {
   const router = useRouter();
   const shortLink = router.query.shortLink;
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const deleteLink = () => {
+    setLoading(true);
     fetchData()
       .delete(`/${shortLink}`)
       .then(() => {
+        setLoading(false);
         router.replace('/dashboard');
         setRefresh(true);
       })
@@ -25,7 +28,7 @@ function Info({ linkData, setRefresh }) {
           <Heading my='10px' textStyle='heading'>
             Total Clicks: {linkData && linkData.clickInfo.length}
           </Heading>
-          <Button mb='15px' color='#1A202C' bg='#FFFFFF' onClick={deleteLink}>
+          <Button mb='15px' color='#1A202C' bg='#FFFFFF' onClick={deleteLink} isLoading={loading}>
             Delete Link
           </Button>
           {linkData.clickInfo.length > 0 ? (
